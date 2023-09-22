@@ -9,4 +9,4 @@ WORKDIR /app
 
 COPY . /app
 
-CMD ["uvicorn", "app.app:app", "--host=0.0.0.0", "--port=8083"]
+CMD ["uvicorn", "app.app:app", "--host=0.0.0.0", "--port=8084"]
