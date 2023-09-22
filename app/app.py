@@ -12,9 +12,10 @@ import deduplicate
 from deduplicate import Deduplication
 import os
     
+device = "cuda"
 app = FastAPI()
-#model_path = "text-classification-model"
-#model = BertForSequenceClassification.from_pretrained(model_path)
+model_path = "text-classification-model"
+model = BertForSequenceClassification.from_pretrained(model_path).to(device)
 
 import re
 import pandas as pd
@@ -38,8 +39,10 @@ def prepare_output_file(file_path):
     df['text'] = df['text'].apply(remove_emojis)
     deduplicator = Deduplication(df)
     
-    news_df = deduplicator.remove_duplicates()  # Убираем дубликаты
-    return news_df
+    _, _, labels = predict(news_df['text'].tolist())
+    labels_df = pd.DataFrame({'category':labels})
+
+    return pd.concat([news_df, labels_df],axis='columns',ignore_index=True)
     
     '''data = json.dumps(list_of_labels)
     data = json.loads(data)

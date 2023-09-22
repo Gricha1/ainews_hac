@@ -4,6 +4,7 @@ COPY requirements.txt /app/requirements.txt
 
 RUN pip install --no-cache-dir -r /app/requirements.txt
 RUN python -m nltk.downloader stopwords
+RUN pip install torch
 
 WORKDIR /app
 
