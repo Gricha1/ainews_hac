@@ -8,7 +8,7 @@ docker run --gpus all -v $(pwd)/uploaded_files:/app/uploaded_files -p 8084:8084 
 go to: 
     localhost:8084/docs
 
-![Step 1](images/1.png)
+![Step 1](images/1.jpg)
 
 load your dataset:
     <your_dataset>.csv
